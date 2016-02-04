@@ -51,6 +51,7 @@ Props:
 - `onSubmit` (function, required) -- Function that is called with user's value when they submit
 - `submitText` (string) -- The string that is displayed on the submit button (defaults to "OK")
 - `cancelText` (string) -- The string that is displayed on the cancel button (defaults to "Cancel")
+- `onChangeText` (function) -- Function that is called with user input when it changes.
 
 ## Testing
 

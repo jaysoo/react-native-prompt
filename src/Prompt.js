@@ -20,6 +20,7 @@ const Prompt = React.createClass({
     cancelText: React.PropTypes.string,
     onSubmit: React.PropTypes.func.isRequired,
     submitText: React.PropTypes.string,
+    onChangeText: React.PropTypes.func.isRequired,
     borderColor: React.PropTypes.string,
     promptStyle: React.PropTypes.object,
     titleStyle: React.PropTypes.object,
@@ -38,7 +39,8 @@ const Prompt = React.createClass({
       titleStyle: {},
       buttonStyle: {},
       buttonTextStyle: {},
-      inputStyle: {}
+      inputStyle: {},
+      onChangeText: () => {}
     };
   },
   getInitialState() {
@@ -81,6 +83,10 @@ const Prompt = React.createClass({
       Portal.closeModal(this._tag);
     }
   },
+  _onChangeText(value) {
+    this.setState({ value });
+    this.props.onChangeText(value);
+  },
   _onSubmitPress() {
     const { value } = this.state;
     if (value) {
@@ -117,7 +123,7 @@ const Prompt = React.createClass({
             <TextInput
               style={[styles.dialogInput, inputStyle]}
               defaultValue={defaultValue}
-              onChangeText={(value) => this.setState({ value })}
+              onChangeText={this._onChangeText}
               placeholder={placeholder}
               autoFocus={true}
               underlineColorAndroid="white"/>
