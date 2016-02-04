@@ -97,9 +97,7 @@ const Prompt = React.createClass({
   },
   _onSubmitPress() {
     const { value } = this.state;
-    if (value) {
-      this.props.onSubmit(value);
-    }
+    this.props.onSubmit(value);
   },
   _onCancelPress() {
     this.props.onCancel();
