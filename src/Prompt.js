@@ -26,6 +26,10 @@ const Prompt = React.createClass({
     titleStyle: React.PropTypes.object,
     buttonStyle: React.PropTypes.object,
     buttonTextStyle: React.PropTypes.object,
+    submitButtonStyle: React.PropTypes.object,
+    submitButtonTextStyle: React.PropTypes.object,
+    cancelButtonStyle: React.PropTypes.object,
+    cancelButtonTextStyle: React.PropTypes.object,
     inputStyle: React.PropTypes.object
   },
   getDefaultProps() {
@@ -39,6 +43,10 @@ const Prompt = React.createClass({
       titleStyle: {},
       buttonStyle: {},
       buttonTextStyle: {},
+      submitButtonStyle: {},
+      submitButtonTextStyle: {},
+      cancelButtonStyle: {},
+      cancelButtonTextStyle: {},
       inputStyle: {},
       onChangeText: () => {}
     };
@@ -108,6 +116,10 @@ const Prompt = React.createClass({
       titleStyle,
       buttonStyle,
       buttonTextStyle,
+      submitButtonStyle,
+      submitButtonTextStyle,
+      cancelButtonStyle,
+      cancelButtonTextStyle,
       inputStyle
     } = this.props;
     return (
@@ -130,15 +142,15 @@ const Prompt = React.createClass({
           </View>
           <View style={[styles.dialogFooter, { borderColor }]}>
             <TouchableWithoutFeedback onPress={this._onCancelPress}>
-              <View style={[styles.dialogAction, buttonStyle]}>
-                <Text style={[styles.dialogActionText, buttonTextStyle]}>
+              <View style={[styles.dialogAction, buttonStyle, cancelButtonStyle]}>
+                <Text style={[styles.dialogActionText, buttonTextStyle, cancelButtonTextStyle]}>
                   {cancelText}
                 </Text>
               </View>
             </TouchableWithoutFeedback>
             <TouchableWithoutFeedback onPress={this._onSubmitPress}>
-              <View style={[styles.dialogAction, buttonStyle]}>
-                <Text style={[styles.dialogActionText, buttonTextStyle]}>
+              <View style={[styles.dialogAction, buttonStyle, submitButtonStyle]}>
+                <Text style={[styles.dialogActionText, buttonTextStyle, submitButtonTextStyle]}>
                   {submitText}
                 </Text>
               </View>
