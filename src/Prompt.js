@@ -1,12 +1,12 @@
-const React = require('react-native');
-const {
+import React from 'react';
+import {
   Modal,
   Platform,
   Text,
   TextInput,
   TouchableWithoutFeedback,
   View
-} = React;
+} from 'react-native';
 const Portal = require('react-native/Libraries/Portal/Portal');
 const styles = require('./styles');
 
