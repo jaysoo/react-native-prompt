@@ -6,7 +6,8 @@
     "start": "node node_modules/react-native/local-cli/cli.js start"
   },
   "dependencies": {
-    "react-native": "^0.18.1",
-    "react-native-prompt": "../"
+    "react": "^15.1.0",
+    "react-native": "^0.27.0",
+    "react-native-prompt": "file:///Users/sibelius/Dev/spontaneous/react-native-prompt"
   }
 }
