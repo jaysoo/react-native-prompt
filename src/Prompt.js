@@ -55,6 +55,10 @@ export default class Prompt extends Component {
     visible: false,
   };
 
+  componentDidMount() {
+    this.setState({value: this.props.defaultValue});
+  }
+
   componentWillReceiveProps(nextProps) {
     const { visible } = nextProps;
     this.setState({ visible });
