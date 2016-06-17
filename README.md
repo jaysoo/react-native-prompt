@@ -66,3 +66,9 @@ npm install
 ```
 npm test
 ```
+
+## Changelog
+
+### 0.18.5 
+
+- Fixed compatibility with React Native 0.27 (thanks @sibelius and @tonyxiao!)

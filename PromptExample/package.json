@@ -8,6 +8,6 @@
   "dependencies": {
     "react": "^15.1.0",
     "react-native": "^0.27.0",
-    "react-native-prompt": "file:///Users/sibelius/Dev/spontaneous/react-native-prompt"
+    "react-native-prompt": "../"
   }
 }
