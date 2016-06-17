@@ -71,4 +71,4 @@ npm test
 
 ### 0.18.5 
 
-- Fixed compatibility with React Native 0.27.2 (thanks @sibelius and @tonyxiao!)
+- Fixed compatibility with React Native 0.27.2 (thanks [@sibelius](https://github.com/sibelius) and [@tonyxiao](https://github.com/tonyxiao)!)
