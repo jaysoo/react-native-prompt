@@ -1,1 +1,2 @@
-module.exports = require('./Prompt');
+import Prompt from './Prompt';
+export default Prompt;

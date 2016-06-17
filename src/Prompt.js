@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component, PropTypes } from 'react';
 import {
   Modal,
   Platform,
@@ -7,102 +7,82 @@ import {
   TouchableWithoutFeedback,
   View
 } from 'react-native';
-const Portal = require('react-native/Libraries/Portal/Portal');
-const styles = require('./styles');
+import styles from './styles';
 
-const Prompt = React.createClass({
-  propTypes: {
-    title: React.PropTypes.string.isRequired,
-    visible: React.PropTypes.bool,
-    defaultValue: React.PropTypes.string,
-    placeholder: React.PropTypes.string,
-    onCancel: React.PropTypes.func.isRequired,
-    cancelText: React.PropTypes.string,
-    onSubmit: React.PropTypes.func.isRequired,
-    submitText: React.PropTypes.string,
-    onChangeText: React.PropTypes.func.isRequired,
-    borderColor: React.PropTypes.string,
-    promptStyle: React.PropTypes.object,
-    titleStyle: React.PropTypes.object,
-    buttonStyle: React.PropTypes.object,
-    buttonTextStyle: React.PropTypes.object,
-    submitButtonStyle: React.PropTypes.object,
-    submitButtonTextStyle: React.PropTypes.object,
-    cancelButtonStyle: React.PropTypes.object,
-    cancelButtonTextStyle: React.PropTypes.object,
-    inputStyle: React.PropTypes.object
-  },
-  getDefaultProps() {
-    return  {
-      visible: false,
-      defaultValue: '',
-      cancelText: 'Cancel',
-      submitText: 'OK',
-      borderColor:'#ccc',
-      promptStyle: {},
-      titleStyle: {},
-      buttonStyle: {},
-      buttonTextStyle: {},
-      submitButtonStyle: {},
-      submitButtonTextStyle: {},
-      cancelButtonStyle: {},
-      cancelButtonTextStyle: {},
-      inputStyle: {},
-      onChangeText: () => {}
-    };
-  },
-  getInitialState() {
-    return { value: this.props.defaultValue };
-  },
-  componentWillMount() {
-    this._tag = '';
-    if (Platform.OS === 'android') {
-      this._tag = Portal.allocateTag();
-    }
-  },
+export default class Prompt extends Component {
+  static propTypes = {
+    title: PropTypes.string.isRequired,
+    visible: PropTypes.bool,
+    defaultValue: PropTypes.string,
+    placeholder: PropTypes.string,
+    onCancel: PropTypes.func.isRequired,
+    cancelText: PropTypes.string,
+    onSubmit: PropTypes.func.isRequired,
+    submitText: PropTypes.string,
+    onChangeText: PropTypes.func.isRequired,
+    borderColor: PropTypes.string,
+    promptStyle: PropTypes.object,
+    titleStyle: PropTypes.object,
+    buttonStyle: PropTypes.object,
+    buttonTextStyle: PropTypes.object,
+    submitButtonStyle: PropTypes.object,
+    submitButtonTextStyle: PropTypes.object,
+    cancelButtonStyle: PropTypes.object,
+    cancelButtonTextStyle: PropTypes.object,
+    inputStyle: PropTypes.object,
+  };
+
+  static defaultProps = {
+    visible: false,
+    defaultValue: '',
+    cancelText: 'Cancel',
+    submitText: 'OK',
+    borderColor:'#ccc',
+    promptStyle: {},
+    titleStyle: {},
+    buttonStyle: {},
+    buttonTextStyle: {},
+    submitButtonStyle: {},
+    submitButtonTextStyle: {},
+    cancelButtonStyle: {},
+    cancelButtonTextStyle: {},
+    inputStyle: {},
+    onChangeText: () => {},
+  };
+
+  state = {
+    value: '',
+    visible: false,
+  };
+
   componentDidMount() {
-    if (Platform.OS === 'android') {
-      this._showOrCloseModal(this.props.visible);
-    }
-  },
-  componentWillUnmount() {
-    if (Platform.OS === 'android') {
-      Portal.closeModal(this._tag);
-      this._tag = '';
-    }
-  },
+    this.setState({value: this.props.defaultValue});
+  }
+
   componentWillReceiveProps(nextProps) {
-    if (nextProps.visible !== this.props.visible) {
-      this._showOrCloseModal(nextProps.visible);
-    }
-  },
-  _showOrCloseModal(visible) {
-    if (visible) {
-      this.setState({ value: this.props.defaultValue });
-    }
+    const { visible } = nextProps;
+    this.setState({ visible });
+  }
 
-    if (Platform.OS === 'ios') {
-      return;
-    }
-
-    if (visible) {
-      Portal.showModal(this._tag, this._renderDialog());
-    } else {
-      Portal.closeModal(this._tag);
-    }
-  },
-  _onChangeText(value) {
+  _onChangeText = (value) => {
     this.setState({ value });
     this.props.onChangeText(value);
-  },
-  _onSubmitPress() {
+  };
+
+  _onSubmitPress = () => {
     const { value } = this.state;
     this.props.onSubmit(value);
-  },
-  _onCancelPress() {
+  };
+
+  _onCancelPress = () => {
     this.props.onCancel();
-  },
-  _renderDialog() {
+  };
+
+  close = () => {
+    this.setState({visible: false});
+  };
+
+  _renderDialog = () => {
     const {
       title,
       placeholder,
@@ -157,18 +137,13 @@ const Prompt = React.createClass({
         </View>
       </View>
     );
-  },
-  render() {
-    if (Platform.OS === 'ios') {
-      return (
-        <Modal transparent={true} visible={this.props.visible}>
-          {this._renderDialog()}
-        </Modal>
-      );
-    } else {
-      return <View/>;
-    }
-  }
-});
+  };
 
-module.exports = Prompt;
+  render() {
+    return (
+      <Modal onRequestClose={() => this.close()} transparent={true} visible={this.props.visible}>
+        {this._renderDialog()}
+      </Modal>
+    );
+  }
+};
