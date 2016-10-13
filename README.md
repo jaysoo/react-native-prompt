@@ -52,6 +52,7 @@ Props:
 - `submitText` (string) -- The string that is displayed on the submit button (defaults to "OK")
 - `cancelText` (string) -- The string that is displayed on the cancel button (defaults to "Cancel")
 - `onChangeText` (function) -- Function that is called with user input when it changes.
+- `textInputProps` (Object) -- Additional props on the input element
 
 ## Testing
 
@@ -68,6 +69,10 @@ npm test
 ```
 
 ## Changelog
+
+### 0.18.6
+
+- Adds `textInputProps` to allow additional props to be passed to the input element. Thanks @yueshuaijie!
 
 ### 0.18.5 
 
