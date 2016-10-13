@@ -30,6 +30,7 @@ export default class Prompt extends Component {
     cancelButtonStyle: PropTypes.object,
     cancelButtonTextStyle: PropTypes.object,
     inputStyle: PropTypes.object,
+    textInputProps: PropTypes.object,
   };
 
   static defaultProps = {
@@ -116,7 +117,8 @@ export default class Prompt extends Component {
               onChangeText={this._onChangeText}
               placeholder={placeholder}
               autoFocus={true}
-              underlineColorAndroid="white"/>
+              underlineColorAndroid="white"
+              {...this.props.textInputProps} />
           </View>
           <View style={[styles.dialogFooter, { borderColor }]}>
             <TouchableWithoutFeedback onPress={this._onCancelPress}>
