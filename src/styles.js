@@ -32,18 +32,15 @@ export default StyleSheet.create({
     fontWeight: '600'
   },
   dialogBody: {
-    flex: 1,
     paddingHorizontal: 10
   },
   dialogInput: {
-    flex: 1,
     height: 50,
     fontSize: 18
   },
   dialogFooter: {
     borderTopWidth: 1,
     flexDirection: 'row',
-    flex: 1
   },
   dialogAction: {
     flex: 1,
