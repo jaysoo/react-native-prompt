@@ -70,6 +70,11 @@ npm test
 
 ## Changelog
 
+### 1.0.0
+
+- Updates `value` when `defaultValue` changes. (Thanks https://github.com/vessp)
+- Removes unnecessary `flex: 1` style. (Thanks https://github.com/stevehollaar)
+
 ### 0.18.6
 
 - Adds `textInputProps` to allow additional props to be passed to the input element. Thanks @yueshuaijie!
