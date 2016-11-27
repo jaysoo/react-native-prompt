@@ -52,7 +52,7 @@ Props:
 - `submitText` (string) -- The string that is displayed on the submit button (defaults to "OK")
 - `cancelText` (string) -- The string that is displayed on the cancel button (defaults to "Cancel")
 - `onChangeText` (function) -- Function that is called with user input when it changes.
-- `textInputProps` (Object) -- Additional props on the input element
+- `textInputProps` (Object) -- Additional props on the input element. Example `textInputProps={{secureTextEntry: true}}
 
 ## Testing
 
