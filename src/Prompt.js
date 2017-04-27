@@ -1,13 +1,15 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import {
   Modal,
   Platform,
   Text,
   TextInput,
   TouchableWithoutFeedback,
-  View
+  View,
+  ViewPropTypes
 } from 'react-native';
 import styles from './styles';
+import PropTypes from 'prop-types';
 
 export default class Prompt extends Component {
   static propTypes = {
@@ -21,15 +23,50 @@ export default class Prompt extends Component {
     submitText: PropTypes.string,
     onChangeText: PropTypes.func.isRequired,
     borderColor: PropTypes.string,
-    promptStyle: PropTypes.object,
-    titleStyle: PropTypes.object,
-    buttonStyle: PropTypes.object,
-    buttonTextStyle: PropTypes.object,
-    submitButtonStyle: PropTypes.object,
-    submitButtonTextStyle: PropTypes.object,
-    cancelButtonStyle: PropTypes.object,
-    cancelButtonTextStyle: PropTypes.object,
-    inputStyle: PropTypes.object,
+    promptStyle: PropTypes.oneOfType([
+      PropTypes.object,
+      ViewPropTypes.style,
+      PropTypes.array
+    ]),
+    titleStyle: PropTypes.oneOfType([
+      PropTypes.object,
+      Text.propTypes.style,
+      PropTypes.array
+    ]),
+    buttonStyle: PropTypes.oneOfType([
+      PropTypes.object,
+      ViewPropTypes.style,
+      PropTypes.array
+    ]),
+    buttonTextStyle: PropTypes.oneOfType([
+      PropTypes.object,
+      Text.propTypes.style,
+      PropTypes.array
+    ]),
+    submitButtonStyle: PropTypes.oneOfType([
+      PropTypes.object,
+      ViewPropTypes.style,
+      PropTypes.array
+    ]),
+    submitButtonTextStyle: PropTypes.oneOfType([
+      PropTypes.object,
+      Text.propTypes.style,
+      PropTypes.array
+    ]),
+    cancelButtonStyle: PropTypes.oneOfType([
+      PropTypes.object,
+      ViewPropTypes.style,
+      PropTypes.array
+    ]),
+    cancelButtonTextStyle: PropTypes.oneOfType([
+      PropTypes.object,
+      Text.propTypes.style,
+      PropTypes.array
+    ]),
+    inputStyle: PropTypes.oneOfType([
+      PropTypes.object,
+      PropTypes.array
+    ]),
     textInputProps: PropTypes.object,
   };
 
