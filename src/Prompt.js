@@ -5,6 +5,7 @@ import {
   Text,
   TextInput,
   TouchableWithoutFeedback,
+  TouchableOpacity,
   View
 } from 'react-native';
 import styles from './styles';
@@ -31,6 +32,7 @@ export default class Prompt extends Component {
     cancelButtonTextStyle: PropTypes.object,
     inputStyle: PropTypes.object,
     textInputProps: PropTypes.object,
+    buttonFeedback: PropTypes.boolean,
   };
 
   static defaultProps = {
@@ -49,6 +51,7 @@ export default class Prompt extends Component {
     cancelButtonTextStyle: {},
     inputStyle: {},
     onChangeText: () => {},
+    buttonFeedback: false,
   };
 
   state = {
@@ -99,8 +102,12 @@ export default class Prompt extends Component {
       submitButtonTextStyle,
       cancelButtonStyle,
       cancelButtonTextStyle,
-      inputStyle
+      inputStyle,
+      buttonFeedback
     } = this.props;
+    
+    const Button = buttonFeedback ? TouchableOpacity : TouchableWithoutFeedback;
+    
     return (
       <View style={styles.dialog} key="prompt">
         <View style={styles.dialogOverlay}/>
@@ -121,20 +128,20 @@ export default class Prompt extends Component {
               {...this.props.textInputProps} />
           </View>
           <View style={[styles.dialogFooter, { borderColor }]}>
-            <TouchableWithoutFeedback onPress={this._onCancelPress}>
+            <Button onPress={this._onCancelPress}>
               <View style={[styles.dialogAction, buttonStyle, cancelButtonStyle]}>
                 <Text style={[styles.dialogActionText, buttonTextStyle, cancelButtonTextStyle]}>
                   {cancelText}
                 </Text>
               </View>
-            </TouchableWithoutFeedback>
-            <TouchableWithoutFeedback onPress={this._onSubmitPress}>
+            </Button>
+            <Button onPress={this._onSubmitPress}>
               <View style={[styles.dialogAction, buttonStyle, submitButtonStyle]}>
                 <Text style={[styles.dialogActionText, buttonTextStyle, submitButtonTextStyle]}>
                   {submitText}
                 </Text>
               </View>
-            </TouchableWithoutFeedback>
+            </Button>
           </View>
         </View>
       </View>
