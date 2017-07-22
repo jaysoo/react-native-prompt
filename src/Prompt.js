@@ -31,6 +31,7 @@ export default class Prompt extends Component {
     cancelButtonTextStyle: PropTypes.object,
     inputStyle: PropTypes.object,
     textInputProps: PropTypes.object,
+    dialogBodyStyle: PropTypes.object,
   };
 
   static defaultProps = {
@@ -49,6 +50,7 @@ export default class Prompt extends Component {
     cancelButtonTextStyle: {},
     inputStyle: {},
     onChangeText: () => {},
+    dialogBodyStyle: {}
   };
 
   state = {
@@ -99,7 +101,8 @@ export default class Prompt extends Component {
       submitButtonTextStyle,
       cancelButtonStyle,
       cancelButtonTextStyle,
-      inputStyle
+      inputStyle,
+      dialogBodyStyle,
     } = this.props;
     return (
       <View style={styles.dialog} key="prompt">
@@ -110,7 +113,7 @@ export default class Prompt extends Component {
               { title }
             </Text>
           </View>
-          <View style={styles.dialogBody}>
+          <View style={[styles.dialogBody, dialogBodyStyle]}>
             <TextInput
               style={[styles.dialogInput, inputStyle]}
               defaultValue={defaultValue}
