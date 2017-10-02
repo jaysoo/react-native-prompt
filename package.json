@@ -47,5 +47,8 @@
     "mocha": "^2.3.4",
     "sinon": "^1.17.2",
     "wd": "^0.4.0"
+  },
+  "dependencies": {
+    "prop-types": "*"
   }
 }
