@@ -63,7 +63,9 @@ export default class Prompt extends Component {
 
   componentWillReceiveProps(nextProps) {
     const { visible, defaultValue } = nextProps;
-    this.setState({ visible, value:defaultValue });
+    if(visible !== this.props.visible && visible) {
+      this.setState({ visible, value: defaultValue });
+    }
   }
 
   _onChangeText = (value) => {
@@ -115,6 +117,7 @@ export default class Prompt extends Component {
             <TextInput
               style={[styles.dialogInput, inputStyle]}
               defaultValue={defaultValue}
+              value={this.state.value}
               onChangeText={this._onChangeText}
               placeholder={placeholder}
               autoFocus={true}
