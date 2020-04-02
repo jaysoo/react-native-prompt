@@ -1,6 +1,6 @@
 {
   "name": "react-native-prompt",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A cross-platform prompt component for React Native.",
   "repository": {
     "type": "git",

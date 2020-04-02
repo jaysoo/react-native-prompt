@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import {
   Modal,
   Platform,
@@ -60,9 +61,18 @@ export default class Prompt extends Component {
     this.setState({value: this.props.defaultValue});
   }
 
-  componentWillReceiveProps(nextProps) {
+  /*componentWillReceiveProps(nextProps) {
     const { visible, defaultValue } = nextProps;
-    this.setState({ visible, value:defaultValue });
+    if(visible !== this.props.visible && visible) {
+      this.setState({ visible, value: defaultValue });
+    }
+  }*/
+  static getDerivedStateFromProps(nextProps, prevState) {
+    const { visible, defaultValue } = nextProps;
+    if(visible !== nextProps.visible && visible) {
+      return { visible: defaultValue };
+    }
+    return null;
   }
 
   _onChangeText = (value) => {
@@ -114,6 +124,7 @@ export default class Prompt extends Component {
             <TextInput
               style={[styles.dialogInput, inputStyle]}
               defaultValue={defaultValue}
+              value={this.state.value}
               onChangeText={this._onChangeText}
               placeholder={placeholder}
               autoFocus={true}
